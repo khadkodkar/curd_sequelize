@@ -1,0 +1,285 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/addUser": {
+      "post": {
+        "tags": [
+          "addUser"
+        ],
+        "description": "Create user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create User",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      } 
+    },
+    "/editUser": {
+      "put": {
+        "tags": [
+          "editUser"
+        ],
+        "description": "Edit user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Edit User",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit user",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
+          } 
+        }
+      } 
+    },
+    "/showUserList": {
+      "get": {
+        "tags": [
+          "listUser"
+        ],
+        "description": "List user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "List User"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "List user",
+            "data":"User"
+          } 
+        }
+      } 
+    },
+    "/deleteUser": {
+      "post": {
+        "tags": [
+          "deleteUser"
+        ],
+        "description": "Delete user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Delete User",
+            "schema": {
+              "$ref": "#/definitions/deleteUser"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete user",
+            "schema": {
+              "$ref": "#/definitions/deleteUser"
+            }
+          }
+        }
+      } 
+    },
+    "/filterUserList": {
+      "post": {
+        "tags": [
+          "filterUserList"
+        ],
+        "description": "filter user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "filter User",
+            "schema": {
+              "$ref": "#/definitions/deleteUser"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "filter user",
+            "schema": {
+              "$ref": "#/definitions/deleteUser"
+            }
+          }
+        }
+      } 
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "description": "login",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "login",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "login",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      } 
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "name",
+        "city",
+        "gender",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+       
+      }
+    },
+    "editUser":{
+      "required": [
+        "id",
+        "name",
+        "city",
+        "gender"
+      ],
+      "properties": {
+        "id":{
+          "type":"integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
+    "deleteUser":{
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id":{
+          "type":"integer"
+        }
+      }
+    },
+    "filterUser":{
+      "required": [
+          "name",
+          "city",
+          "gender",
+          "condition",
+          "PageNumber",
+          "PageSize"
+      ],
+      "properties": {
+        "name":{"type":"string"},
+        "city":{"type":"string"},
+        "gender":{"type":"string"},
+        "condition":{"type":"string"},
+        "PageNumber":{"type":"integer"},
+        "PageSize":{"type":"integer"}
+      }
+    },
+    "login":{
+      "required": [
+          "name",
+          "password"
+      ],
+      "properties": {
+        "name":{"type":"string"},
+        "password":{"type":"string"}
+      }
+    }
+  }
+}
